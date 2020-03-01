@@ -82,7 +82,7 @@ const lawnApp = {
 			if(userPlay.toUpperCase() === "Y") {
 				alert("Great! You just made $5! Now get to work!")
 				this.money += 5
-			} else if(userPlayu.toUpperCase() === "N") {
+			} else if(userPlay.toUpperCase() === "N") {
 				alert("yikes! go back to cutting with your teeth then!")
 				this.teethCut();
 			}
