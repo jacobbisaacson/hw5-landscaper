@@ -5,24 +5,23 @@ console.log("hw5");
 // user gets prompt saying, "cut lawn for 1 dollar? y/n"
 // user selects yes, money increases by 1, teeth decrease by 1
 // start money at 0
-// 
 
 
 //You are starting a landscaping business, but all you have are your teeth.
 //Using just your teeth, you can spend the day cutting lawns and make $1. 
 //You can do this as much as you want.
-
-
-
+let lawnTools = ["teeth", "scissors", "pushLawnmower", "batteryLawnmower", "starvingStudents"]
 const lawnApp = {
 	money: 0,
-	lawnTools: {
-		teeth: true,
-		scissors: true,
-		pushLawnmower: true,
-		starvingStudents: true
-	},
 
+	reassignTool: function () {
+	lawnTools.splice(2, 1, this.lawnTools)
+	},
+		// need to reassign each tool to the following index number in the array
+		//after the next one has been bought
+		// when scissorsCut is called, turn teeth to false, and scissors to true
+		// then again when pushLawnmower is called, turn scissors to false, pushLawnmower to true
+		// then 
 	userPlay: function () {
 		if(this.money === 1000) { 
 		// both being the end of the game
@@ -65,6 +64,7 @@ const lawnApp = {
 				this.start ();
 			}
 			if(this.money >= 5) {
+				this.reassignTool();
 				this.scissorsCut();
 			}
 		}
@@ -73,23 +73,16 @@ const lawnApp = {
 		if(this.money <= 25) {
 			this.money -= 5
 			// need loop for when get's to 25?
-		alert(`Nice! You made enough to buy some sweet Scissors! You make $5 per cut with those, but it just cost you $5! Right now, you have $${this.money}.`)
+		alert(`Nice! You made enough to buy some ${this.lawnTools}! You make $5 per cut with those, but it just cost you $5! Right now, you have $${this.money}.`)
 		// need loop to iterate over money and tools	
 		} // it's adding $5 when it's called to scissorscut from teech cut??
 		for(let i = this.money; i < 25; i++) { // $5 becuase thats how long it will take to get a new tool 
 			// make scissors true)
-			const userPlayNewTool1 = prompt("You want to cut some grass with your new Scissors?", "(Y/N)") 
-			// Y = add $5 to money, N = call showStatus (how much money user has and what their current 
-			// tool is)
-			// need to go make showStatus now
-			// need to go make userPlay now?  no right?
-			// DO I NEED ANOTHER forLOOP for when money is over $5 in this part?? 
-			// then call the push lawnmower function?
-			// make push lawnmower cut function now
-			if(userPlayNewTool1.toUpperCase() === "Y") {
+			const userPlay = prompt("You want to cut some grass with your new Scissors?", "(Y/N)") 
+			if(userPlay.toUpperCase() === "Y") {
 				alert("Great! You just made $5! Now get to work!")
 				this.money += 5
-			} else if(userPlayNewTool1.toUpperCase() === "N") {
+			} else if(userPlayu.toUpperCase() === "N") {
 				alert("yikes! go back to cutting with your teeth then!")
 				this.teethCut();
 			}
@@ -105,11 +98,11 @@ const lawnApp = {
 		// need loop to iterate over money and tools	
 		}
 		for(let i = this.money; i < 50; i++) {
-			const userPlayNewTool2 = prompt("You want to cut some grass with your new Push Lawnmower?", "(Y/N)") 
-			if(userPlayNewTool2.toUpperCase() === "Y") {
+			const userPlay = prompt("You want to cut some grass with your new Push Lawnmower?", "(Y/N)") 
+			if(userPlay.toUpperCase() === "Y") {
 				alert("Great! You just made $50! Now get to work!")
 				this.money += 50
-			} else if(userPlayNewTool2.toUpperCase() === "N") {
+			} else if(userPlay.toUpperCase() === "N") {
 				alert("yikes! go back to cutting with those scissors then!")
 				this.scissorsCut();
 			}
@@ -126,11 +119,11 @@ const lawnApp = {
 		// need loop to iterate over money and tools	
 		}
 		for(let i = this.money; i < 500; i++) {
-			const userPlayNewTool3 = prompt("You want to cut some grass with your new Battery Lawnmower?", "(Y/N)") 
-			if(userPlayNewTool3.toUpperCase() === "Y") {
+			const userPlay = prompt("You want to cut some grass with your new Battery Lawnmower?", "(Y/N)") 
+			if(userPlay.toUpperCase() === "Y") {
 				alert("Great! You just made $100! Now get to work!")
 				this.money += 100
-			} else if(userPlayNewTool3.toUpperCase() === "N") {
+			} else if(userPlay.toUpperCase() === "N") {
 				alert("yikes! go back to cutting with that old school mower then!")
 				this.pushLawnmowerCut();
 			}
@@ -146,11 +139,11 @@ const lawnApp = {
 		// need loop to iterate over money and tools	
 		}
 		for(let i = this.money; i < 1000; i++) {
-			const userPlayNewTool3 = prompt("You want to cut some grass with your sweet new team?", "(Y/N)") 
-			if(userPlayNewTool3.toUpperCase() === "Y") {
+			const userPlay = prompt("You want to cut some grass with your sweet new team?", "(Y/N)") 
+			if(userPlay.toUpperCase() === "Y") {
 				alert("Great! You just made $250! Now get to work!")
 				this.money += 250
-			} else if(userPlayNewTool3.toUpperCase() === "N") {
+			} else if(userPlay.toUpperCase() === "N") {
 				alert("yikes! go back to cutting with that batter lawnmower then!")
 				this.batteryLawnmowerCut();
 			}
@@ -160,7 +153,7 @@ const lawnApp = {
 		}
 	},
 	showStatus: function () {
-		alert(`Your tool is ${this.lawnTools}, and you have $${this.money}.`);
+		alert(`Your tool is ${lawnTools[0]}, and you have $${this.money}.`);
 			// says you're tool is {object objct} -0- how to make that say what the current tool is
 			// but the money is adding up! just not saying it in the promps
 	},
@@ -170,6 +163,7 @@ const lawnApp = {
 		alert("You're starting a landscaping business. Work hard, earn money, buy better cutting tools!")
 		this.showStatus();
 		this.userPlay();
+		this.reassignTool();
 	}
 }
 lawnApp.start()
