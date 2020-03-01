@@ -13,20 +13,25 @@ console.log("hw5");
 //You can do this as much as you want.
 
 
-
-const app = {
+let cutCost = 1;
+const lawnApp = {
 	money: 0,
-	cutCost: 1,
-
-askForAction: function() {
-	const askToCut = prompt('Can I cut your lawn for $1?', '(Y/N)')
-		if(askToCut.toUpperCase() === 'Y') { 
-			alert("great! give me $1 please and I'll get started");
-	// will be this.whatever later?  why are we committing after initial steps?
-		} else if(askToCut.toUpperCase() === 'N') {
-			alert("ok hope your grass overtakes your house");
-		}
+	lawnTools: {
+		teeth: true,
+		scissors: false,
+		pushLawnmower: false,
+		startingStudents: false,
+	},
+	start: function () {
+		// alerts to user about the game (when page opens / reloads)
+		alert("Landscaping Game! Wooo!")
+		alert("You're starting a landscaping business. Work hard, earn money, buy better cutting tools!")
+		const letsPlay = prompt("Let's play!", "Y")
+		// just 1 choice to play, can hit cancel (already in there)
 	}
 }
 
-app.start()
+lawnApp.start()
+
+
+
