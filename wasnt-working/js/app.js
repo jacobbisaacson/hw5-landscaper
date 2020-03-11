@@ -10,26 +10,18 @@ console.log("hw5");
 //You are starting a landscaping business, but all you have are your teeth.
 //Using just your teeth, you can spend the day cutting lawns and make $1. 
 //You can do this as much as you want.
-
-/// need to set up the tools with prices at the top, max price, 
-	
-
+let lawnTools = ["teeth", "scissors", "pushLawnmower", "batteryLawnmower", "starvingStudents"]
 const lawnApp = {
 	money: 0,
-	lawnTools: {
-		teeth: true,
-		scissors: false,
-		pushLawnmower: false,
-		batteryLawnmower: false,
-		starvingStudents: false,
-	},
+
 	reassignTool: function () {
-		for(let i = 0; i < 5; i++) {
-			if(this.lawnTool === true) {
-				this.lawnTool === false							
-				}
-		}
+	lawnTools.splice(2, 1, this.lawnTools)
 	},
+		// need to reassign each tool to the following index number in the array
+		//after the next one has been bought
+		// when scissorsCut is called, turn teeth to false, and scissors to true
+		// then again when pushLawnmower is called, turn scissors to false, pushLawnmower to true
+		// then 
 	userPlay: function () {
 		if(this.money === 1000) { 
 		// both being the end of the game
@@ -40,11 +32,10 @@ const lawnApp = {
  		// just 1 choice to play, can hit cancel (already in there) // call method based on input
  			if(letsPlay.toUpperCase() === "Y") {
 		//call teethCut function -- go make one now
-			this.teethCut();
-			this. reassignTool();
+			this.teethCut()
 		} else if (letsPlay.toUpperCase() === "N") {
-			this.showStatus();
-			this.start();
+			this.showStatus()
+			this.start()
 		}
 	},
 	teethCut: function () {
@@ -56,7 +47,7 @@ const lawnApp = {
 		alert(`Go cut some lawns! You get $1 for every cut. Right now, you have $${this.money}.`)
 		}
 		// need loop to iterate over money and tools
-		for(let i = this.money; i < 5; i++) { // $5 becuase thats how long it will take to get a new tool (make scissors true)
+		for(let i = 0; i < 5; i++) { // $5 becuase thats how long it will take to get a new tool (make scissors true)
 			const userPlay = prompt("You want to cut some grass with your teeth?", "(Y/N)") //
 			// Y = add $1 to money, N = call showStatus (how much money user has and what their current 
 			// tool is)
@@ -162,7 +153,7 @@ const lawnApp = {
 		}
 	},
 	showStatus: function () {
-		alert(`Your tool is ${this.lawnTools}, and you have $${this.money}.`);
+		alert(`Your tool is ${lawnTools[0]}, and you have $${this.money}.`);
 			// says you're tool is {object objct} -0- how to make that say what the current tool is
 			// but the money is adding up! just not saying it in the promps
 	},
@@ -176,39 +167,3 @@ const lawnApp = {
 	}
 }
 lawnApp.start()
-
-// TO ITERATE TRROUGH AN ARRAY --
-// function filteredArray(arr, elem) {
-//   let newArr = [];
-//   // change code below this line
-
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i].indexOf(elem) == -1) {
-//       //Checks every parameter for the element and if is NOT there continues the code
-//       newArr.push(arr[i]); //Inserts the element of the array in the new filtered array
-//     }
-//   }
-
-//   // change code above this line
-//   return newArr;
-// }
-// // change code here to test different cases:
-// console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
-
-
-
-///REMOVED FROM TEH START FUNCTION --
-		// const letsPlay = prompt("Let's play!", "Y")
- 		// just 1 choice to play, can hit cancel (already in there)
- 		//if(letsPlay.toUpperCase() === "Y") {
-		//call teethCut function -- go make one now
-		//this.teethCut();
-
-
-/// REMOVED FROM SHOW STATUS FUNCTION -- 
-		// need loop to iterate trough the tools array to see what's true.  
-		// if this.money is >= 5, then scissors becomes true
-		// and teeth becomes false... and so on
-		// then loop goes until a true is hit, and that tool is called to the function
-		// while this.lawnTOol is false, contiune the loop until true?
-
